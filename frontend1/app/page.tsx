@@ -1,4 +1,4 @@
-import DemoNav from "@/components/DemoNavbar";
+
 import DemoNavbar from "@/components/DemoNavbar";
 import AnimatedFeatureSpotlightDemo from "@/components/DetailsSection";
 import DemoOne from "@/components/HomePage";
@@ -10,7 +10,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
-    <DemoNav></DemoNav>
+
   <DemoOne></DemoOne>
   <AnimatedFeatureSpotlightDemo></AnimatedFeatureSpotlightDemo>
   <FinancialTable></FinancialTable>
