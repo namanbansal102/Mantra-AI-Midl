@@ -85,7 +85,7 @@ const AetherFlowHero: React.FC = () => {
                 let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
                 let directionX = (Math.random() * 0.4) - 0.2;
                 let directionY = (Math.random() * 0.4) - 0.2;
-                let color = 'rgba(191, 128, 255, 0.8)'; // Brighter purple
+                let color = 'rgba(59, 130, 246, 0.8)'; // Brighter purple
                 particles.push(new Particle(x, y, directionX, directionY, size, color));
             }
         };
@@ -113,9 +113,10 @@ const AetherFlowHero: React.FC = () => {
                         let distance_mouse_a = Math.sqrt(dx_mouse_a*dx_mouse_a + dy_mouse_a*dy_mouse_a);
 
                         if (mouse.x !== null && mouse.y !== null && distance_mouse_a < mouse.radius) {
-                             CTX.strokeStyle = `rgba(255, 255, 255, ${opacityValue})`;
+                             CTX.strokeStyle = `rgba(96, 165, 250, ${opacityValue})`;
                         } else {
-                             CTX.strokeStyle = `rgba(200, 150, 255, ${opacityValue})`;
+                            CTX.strokeStyle = `rgba(255, 255, 255, ${opacityValue})`;
+
                         }
                         
                         CTX.lineWidth = 1;
@@ -190,9 +191,9 @@ const AetherFlowHero: React.FC = () => {
                     variants={fadeUpVariants}
                     initial="hidden"
                     animate="visible"
-                    className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 mb-6 backdrop-blur-sm"
+                    className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 mb-6 backdrop-blur-sm"
                 >
-                    <Zap className="h-4 w-4 text-purple-400" />
+                    <Zap className="h-4 w-4 text-blue-400" />
                     <span className="text-sm font-medium text-gray-200">
                         Dynamic Rendering Engine
                     </span>
