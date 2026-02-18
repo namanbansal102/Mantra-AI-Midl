@@ -10,8 +10,12 @@
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",
+    "@rainbow-me/rainbowkit": "^2.2.10",
+    "@tanstack/react-query": "^5.90.21",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^4.1.0",
     "lucide-react": "^0.574.0",
     "motion": "^12.34.1",
     "next": "16.1.6",
@@ -20,7 +24,9 @@
     "react-dom": "19.2.3",
     "react-force-graph-3d": "^1.29.1",
     "tailwind-merge": "^3.4.1",
-    "three-spritetext": "^1.10.0"
+    "three-spritetext": "^1.10.0",
+    "viem": "^2.46.2",
+    "wagmi": "^2.19.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
