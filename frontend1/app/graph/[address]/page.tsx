@@ -86,13 +86,14 @@ export default function GraphVisualization({params}:any) {
         setLoading(true);
         setError(null);
         
-        const response = await fetch('http://127.0.0.1:5000/validate', {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/validate`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
 
           },
           body:JSON.stringify({
+            BASE_URL:process.env.NEXT_PUBLIC_BASE_URL,
             "wallet":paramss.address
           })
 
@@ -223,7 +224,7 @@ export default function GraphVisualization({params}:any) {
           <div className="text-muted-foreground text-sm mb-4">{error}</div>
           <div className="text-muted-foreground text-xs">
             Make sure your Python API is running at{' '}
-            <code className="bg-card px-2 py-1 rounded">http://127.0.0.1:5000/validate</code>
+            <code className="bg-card px-2 py-1 rounded">Cannot Fetch</code>
           </div>
         </div>
       </div>

@@ -150,7 +150,7 @@ export function Navbar() {
                         )}
                       </div>
                     )}
-                    {chain.name}
+                 
                   </button>
 
                   <button onClick={openAccountModal} type="button">

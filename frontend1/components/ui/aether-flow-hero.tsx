@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Zap } from 'lucide-react';
+import Link from 'next/link';
 
 // A utility function for class names
 const cn = (...classes: Array<string | false | null | undefined>) => classes.filter(Boolean).join(' ');
@@ -193,9 +194,9 @@ const AetherFlowHero: React.FC = () => {
                     animate="visible"
                     className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 mb-6 backdrop-blur-sm"
                 >
-                    <Zap className="h-4 w-4 text-blue-400" />
+                   <img className='h-6' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlzPe83XrDQcclbJwYqOZy6lnAcc4FALZ6kw&s" alt="BNB" />
                     <span className="text-sm font-medium text-gray-200">
-                        Dynamic Rendering Engine
+                    Real-Time Fraud Detection
                     </span>
                 </motion.div>
 
@@ -206,7 +207,7 @@ const AetherFlowHero: React.FC = () => {
                     animate="visible"
                     className="text-5xl md:text-8xl font-bold tracking-tighter mb-6 bg-clip-text text-transparent bg-linear-to-b from-white to-gray-400"
                 >
-                    Aether Flow
+                    Mantra AI
                 </motion.h1>
 
                 <motion.p
@@ -216,7 +217,7 @@ const AetherFlowHero: React.FC = () => {
                     animate="visible"
                     className="max-w-2xl mx-auto text-lg text-gray-400 mb-10"
                 >
-                    An intelligent, adaptive framework for creating fluid digital experiences that feel alive and respond to user interaction in real-time.
+                   An intelligent, adaptive framework for detecting blockchain risks On BNB Chain through graph visualization that evolves and responds to transactions in real-time.
                 </motion.p>
 
                 <motion.div
@@ -225,10 +226,10 @@ const AetherFlowHero: React.FC = () => {
                     initial="hidden"
                     animate="visible"
                 >
-                    <button className="px-8 py-4 bg-white text-black font-semibold rounded-lg shadow-lg hover:bg-gray-200 transition-colors duration-300 flex items-center gap-2 mx-auto">
+                    <Link href={"/validate"} className="px-8 py-4 bg-white text-black font-semibold rounded-lg shadow-lg hover:bg-gray-200 transition-colors duration-300 flex items-center gap-2 mx-auto w-fit">
                         Explore the Engine
                         <ArrowRight className="h-5 w-5" />
-                    </button>
+                    </Link>
                 </motion.div>
             </div>
         </div>

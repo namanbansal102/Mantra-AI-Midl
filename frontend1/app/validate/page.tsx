@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { motion, useMotionValue, useTransform, useSpring, useMotionValueEvent } from 'framer-motion';
 import Link from 'next/link';
+import { useAccount, useSendTransaction, useWaitForTransactionReceipt } from 'wagmi';
 
 // Dynamically import the graph component
 const GraphVisualization = dynamic(() => import('../graph-component'), {
@@ -205,34 +206,64 @@ interface RiskData {
 
 export default function RiskAssessment() {
   const router = useRouter();
-  const [address, setAddress] = useState('');
+  const { address: userAddress } = useAccount();
+  const { sendTransaction, isPending: isSendingTransaction, data: transactionHash } = useSendTransaction();
+  const { isLoading: isWaitingForReceipt, isSuccess } = useWaitForTransactionReceipt({
+    hash: transactionHash,
+  });
+  const [recipientAddress, setRecipientAddress] = useState('');
+  const [amount, setAmount] = useState('');
   const [riskData, setRiskData] = useState<RiskData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isConfirming, setIsConfirming] = useState(false);
 
 
+
+  const validateInputs = (): boolean => {
+    if (!recipientAddress.trim()) {
+      setError('Please enter a valid recipient address');
+      return false;
+    }
+
+    if (!/^0x[a-fA-F0-9]{40}$/.test(recipientAddress)) {
+      setError('Invalid Ethereum address format');
+      return false;
+    }
+
+    if (!amount.trim()) {
+      setError('Please enter an amount');
+      return false;
+    }
+
+    if (isNaN(Number(amount)) || Number(amount) <= 0) {
+      setError('Amount must be a valid positive number');
+      return false;
+    }
+
+    return true;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(null);
 
-    if (!address.trim()) {
-      setError('Please enter a valid address');
+    if (!validateInputs()) {
       return;
     }
 
     try {
       setLoading(true);
-      setError(null);
 
-      const response = await fetch('http://127.0.0.1:5000/validate', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/validate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-         body:JSON.stringify({
-            "wallet":address
-          })
-
+        body: JSON.stringify({
+              BASE_URL:process.env.NEXT_PUBLIC_BASE_URL,
+          wallet: recipientAddress,
+        }),
       });
 
       if (!response.ok) {
@@ -245,7 +276,7 @@ export default function RiskAssessment() {
       setRiskData({
         risk_score: data.risk_score || 0,
         reasons: data.reasons || [],
-        address: address,
+        address: recipientAddress,
         nodes: data.nodes,
         edges: data.edges,
         root_wallet: data.root_wallet,
@@ -256,6 +287,68 @@ export default function RiskAssessment() {
       setLoading(false);
     }
   };
+
+  const handleConfirm = async () => {
+    if (!userAddress) {
+      setError('Please connect your wallet first');
+      return;
+    }
+
+    if (!recipientAddress || !amount) {
+      setError('Please enter recipient address and amount');
+      return;
+    }
+
+    try {
+      setIsConfirming(true);
+      setError(null);
+
+      // Prepare transaction data
+      const amountInWei = BigInt(Math.floor(parseFloat(amount) * 1e18));
+
+      console.log('[v0] Confirming transaction:', {
+        to: recipientAddress,
+        amount: amount,
+        amountInWei: amountInWei.toString(),
+        riskScore: riskData?.risk_score,
+        userAddress: userAddress,
+      });
+
+      // Send the transaction
+      await sendTransaction({
+        to: recipientAddress as `0x${string}`,
+        value: amountInWei,
+        account: userAddress,
+      });
+
+      console.log('[v0] Transaction sent, hash:', transactionHash);
+    } catch (err) {
+      console.error('[v0] Transaction error:', err);
+      setError(err instanceof Error ? err.message : 'Failed to confirm transaction');
+    } finally {
+      setIsConfirming(false);
+    }
+  };
+
+  // Monitor transaction status
+  useEffect(() => {
+    if (isSuccess) {
+      console.log('[v0] Transaction confirmed successfully:', transactionHash);
+      setError(null);
+      // Optional: Show success toast or message
+      alert(`Transaction confirmed! Hash: ${transactionHash}`);
+      // Reset form on success
+      setRecipientAddress('');
+      setAmount('');
+    }
+  }, [isSuccess, transactionHash]);
+
+  // Monitor transaction sending status
+  useEffect(() => {
+    if (isSendingTransaction) {
+      console.log('[v0] Transaction is being sent...');
+    }
+  }, [isSendingTransaction]);
 
   if (!riskData) {
     return (
@@ -273,7 +366,7 @@ export default function RiskAssessment() {
               onClick={() => router.push('/')}
               className="mb-8 px-4 py-2 text-muted-foreground hover:text-foreground transition-colors text-sm"
             >
-              ← Back to Home
+              ← Back
             </button>
 
             {/* Input Section */}
@@ -283,23 +376,39 @@ export default function RiskAssessment() {
               transition={{ duration: 0.5 }}
             >
               <div className="text-center mb-12">
-                <h1 className="text-5xl font-bold mb-2 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                  Wallet Risk Scanner
-                </h1>
+              
+                <img className='mx-46' src="https://images.seeklogo.com/logo-png/40/2/binance-smart-chain-logo-png_seeklogo-407502.png" alt="" />
                 <p className="text-muted-foreground text-lg">
                   Analyze the security risk of any Ethereum wallet
                 </p>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Recipient Address Input */}
                 <div className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-r from-primary/50 to-accent/50 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300 opacity-0 group-hover:opacity-100" />
                   <div className="relative bg-card border border-border rounded-2xl p-1">
                     <input
                       type="text"
-                      value={address}
-                      onChange={(e) => setAddress(e.target.value)}
-                      placeholder="Enter wallet address (0x...)"
+                      value={recipientAddress}
+                      onChange={(e) => setRecipientAddress(e.target.value)}
+                      placeholder="Recipient address (0x...)"
+                      className="w-full px-6 py-4 bg-background border-0 rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                    />
+                  </div>
+                </div>
+
+                {/* Amount Input */}
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/50 to-accent/50 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300 opacity-0 group-hover:opacity-100" />
+                  <div className="relative bg-card border border-border rounded-2xl p-1">
+                    <input
+                      type="number"
+                      value={amount}
+                      onChange={(e) => setAmount(e.target.value)}
+                      placeholder="Amount (in tokens or BNB)"
+                      step="0.0001"
+                      min="0"
                       className="w-full px-6 py-4 bg-background border-0 rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                   </div>
@@ -318,9 +427,9 @@ export default function RiskAssessment() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="mx-56 px-6 py-3 bg-gradient-to-r from-primary to-accent text-foreground font-semibold rounded-xl hover:opacity-90 disabled:opacity-50 transition-all duration-300 transform hover:scale-105 border-2 border-white"
+                  className="w-full px-6 py-3 bg-gradient-to-r from-primary to-accent text-foreground font-semibold rounded-xl hover:opacity-90 disabled:opacity-50 transition-all duration-300 transform hover:scale-105 border-2 border-white"
                 >
-                  {loading ? 'Analyzing...' : 'Analyze Wallet'}
+                  {loading ? 'Analyzing...' : 'Analyze & Check Risk'}
                 </button>
               </form>
             </motion.div>
@@ -341,7 +450,7 @@ export default function RiskAssessment() {
         <div className="max-w-6xl mx-auto flex items-center justify-between">
 
           <Link
-          href={`/graph/${address}`}
+          href={`/graph/${recipientAddress}`}
             className="px-4 py-2 bg-card border border-border rounded-lg text-foreground hover:bg-muted transition-colors"
           >
             Go To Risk Graph
@@ -399,6 +508,61 @@ export default function RiskAssessment() {
               </div>
             </motion.div>
           )}
+
+          {/* Transaction Details */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="mt-12 w-full max-w-2xl"
+          >
+            <div className="bg-card border border-border rounded-lg p-6 space-y-4">
+              <div className="flex justify-between items-center pb-4 border-b border-border">
+                <span className="text-muted-foreground">Recipient Address</span>
+                <span className="text-foreground font-mono text-sm">{riskData.address.slice(0, 6)}...{riskData.address.slice(-4)}</span>
+              </div>
+              <div className="flex justify-between items-center pb-4 border-b border-border">
+                <span className="text-muted-foreground">Amount</span>
+                <span className="text-foreground font-semibold">{amount} BNB</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">Risk Assessment</span>
+                <span
+                  className="font-semibold px-3 py-1 rounded-full text-sm"
+                  style={{
+                    color: getRiskColor(riskData.risk_score),
+                    backgroundColor: `${getRiskColor(riskData.risk_score)}20`,
+                  }}
+                >
+                  {getRiskLabel(riskData.risk_score)}
+                </span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Confirm Button */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            className="mt-8 w-full max-w-2xl"
+          >
+            <button
+              onClick={handleConfirm}
+              disabled={isConfirming || isSendingTransaction || isWaitingForReceipt || !userAddress}
+              className="w-full px-6 py-4 bg-white text-black font-semibold rounded-xl hover:bg-gray-100 disabled:opacity-50 transition-all duration-300 transform hover:scale-105"
+            >
+              {!userAddress
+                ? 'Connect Wallet First'
+                : isWaitingForReceipt
+                ? 'Waiting for Confirmation...'
+                : isSendingTransaction
+                ? 'Sending Transaction...'
+                : isConfirming
+                ? 'Processing...'
+                : 'Confirm Transaction'}
+            </button>
+          </motion.div>
         </motion.div>
 
         {/* Graph Section */}

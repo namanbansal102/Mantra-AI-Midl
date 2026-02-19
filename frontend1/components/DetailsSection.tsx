@@ -16,7 +16,7 @@ export default function AnimatedFeatureSpotlightDemo() {
             <span className="text-primary">Potential</span>
           </>
         }
-        description="Filter the global market instantly with powerful screeners tailored to your trading style. Quickly identify the most promising assets based on specific criteria and market conditions, so you never miss the next big thing."
+        description="Detect blockchain fraud instantly with intelligent graph analytics tailored to transaction behavior, helping you identify risks early and prevent threats before they spread."
         buttonText="Try Now for Free"
         buttonProps={{ onClick: () => alert('Button Clicked!') }}
         imageUrl="https://forecaster.biz/wp-content/uploads/2025/06/screener-1536x993.avif"

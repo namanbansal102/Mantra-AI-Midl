@@ -12,48 +12,26 @@ import {
 export default function TeamSectionDemo() {
   const teamMembers = [
     {
-      name: "EMMA",
-      designation: "Product Designer",
+      name: "NAMAN BANSAL",
+      designation: "Blockchain Developer",
       imageSrc:
-        "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Example image for Emma
+        "https://avatars.githubusercontent.com/u/131576334?v=4", // Example image for Emma
       socialLinks: [
         { icon: Twitter, href: "#" },
         { icon: Linkedin, href: "#" },
       ],
-    },
-    {
-      name: "HENRY",
-      designation: "Lead Developer",
-      imageSrc:
-        "https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Example image for Henry
-      socialLinks: [
-        { icon: Github, href: "#" },
-        { icon: Twitter, href: "#" },
-      ],
-    },
-    {
-      name: "JOHN",
-      designation: "Marketing Specialist",
-      imageSrc:
-        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Example image for John
-      socialLinks: [
-        { icon: Facebook, href: "#" },
-        { icon: Instagram, href: "#" },
-      ],
-    },
+    }
   ];
 
   const mainSocialLinks = [
-    { icon: Twitter, href: "#" },
-    { icon: Facebook, href: "#" },
-    { icon: Instagram, href: "#" },
-    { icon: Youtube, href: "#" },
+    { icon: Twitter, href: "https://x.com/NamanBansa67011" },
+    { icon: Github, href: "https://github.com/namanbansal102" },
   ];
 
   return (
     <TeamSection
       title="CREATIVE TEAM"
-      description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat."
+      description="Design intelligent systems that analyze blockchain transactions through dynamic graph visualization and sentiment modeling, uncovering hidden risk patterns, suspicious clusters, and behavioral anomalies in real-time decentralized networks."
       members={teamMembers}
       registerLink="#"
       logo="RAVI" // You could pass an actual SVG or Image component here

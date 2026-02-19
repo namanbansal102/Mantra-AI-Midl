@@ -19,10 +19,8 @@ function HoverFooter() {
     {
       title: "About Us",
       links: [
-        { label: "Company History", href: "#" },
+        { label: "Risk Analysis", href: "#" },
         { label: "Meet the Team", href: "#" },
-        { label: "Employee Handbook", href: "#" },
-        { label: "Careers", href: "#" },
       ],
     },
     {
@@ -43,8 +41,8 @@ function HoverFooter() {
   const contactInfo = [
     {
       icon: <Mail size={18} className="text-[#3ca2fa]" />,
-      text: "hello@nurui.com",
-      href: "mailto:hello@nurui.com",
+      text: "namabansal102@gmail.com",
+      href: "mailto:namabansal102@gmail.com",
     },
     {
       icon: <Phone size={18} className="text-[#3ca2fa]" />,
@@ -53,7 +51,7 @@ function HoverFooter() {
     },
     {
       icon: <MapPin size={18} className="text-[#3ca2fa]" />,
-      text: "Sylhet, Bangladesh",
+      text: "Punjab, India",
     },
   ];
 
@@ -76,10 +74,10 @@ function HoverFooter() {
               <span className="text-[#3ca2fa] text-3xl font-extrabold">
                 &hearts;
               </span>
-              <span className="text-white text-3xl font-bold">Nur/ui</span>
+              <span className="text-white text-3xl font-bold">Mantra AI</span>
             </div>
             <p className="text-sm leading-relaxed">
-              Nur UI is a modern React and Next.js based UI component library.
+             An intelligent, adaptive framework for detecting blockchain risks through graph visualization that evolves and responds to transactions in real-time.
             </p>
           </div>
 
@@ -154,14 +152,14 @@ function HoverFooter() {
 
           {/* Copyright */}
           <p className="text-center md:text-left">
-            &copy; {new Date().getFullYear()} Nurui. All rights reserved.
+            &copy; {new Date().getFullYear()} Mantra AI. All rights reserved.
           </p>
         </div>
       </div>
 
       {/* Text hover effect */}
       <div className="lg:flex hidden h-[30rem] -mt-52 -mb-36">
-        <TextHoverEffect text="Nurui" className="z-50" />
+        <TextHoverEffect text="Mantra" className="z-50" />
       </div>
 
       <FooterBackgroundGradient />
