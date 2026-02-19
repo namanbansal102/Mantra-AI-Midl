@@ -363,7 +363,7 @@ export function FinancialTable({
               animate="visible"
             >
               {indices.map((index, indexNum) => (
-                <motion.div key={index.id} variants={rowVariants}>
+                <motion.div key={index.id} >
                   <div
                     className={`px-8 py-3 cursor-pointer group relative transition-all duration-200 ${
                       selectedIndex === index.id 

@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, easeInOut } from 'framer-motion';
 import { ArrowRight, Zap } from 'lucide-react';
 import Link from 'next/link';
 
@@ -10,7 +10,7 @@ const cn = (...classes: Array<string | false | null | undefined>) => classes.fil
 
 // The main hero component
 const AetherFlowHero: React.FC = () => {
-    const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
+    const canvasRef:any = React.useRef<HTMLCanvasElement | null>(null);
 
     React.useEffect(() => {
         const canvas = canvasRef.current as HTMLCanvasElement | null;
@@ -174,7 +174,7 @@ const AetherFlowHero: React.FC = () => {
             transition: {
                 delay: i * 0.2 + 0.5,
                 duration: 0.8,
-                ease: "easeInOut",
+                ease: easeInOut,
             },
         }),
     };
