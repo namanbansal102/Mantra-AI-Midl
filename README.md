@@ -1,5 +1,8 @@
 # 🛡️ Mantra AI
+![Project Banner](https://cdn.dorahacks.io/static/files/19c79e332ed98004139ff294311ace62.png)
 
+
+![Project Banner](https://cdn.dorahacks.io/static/files/19c79dfa8b7ea49af7d31844687a5086.png)
 <div align="center">
 
 ![Mantra AI Banner](https://img.shields.io/badge/Mantra_AI-Real--Time_Fraud_Detection-blue?style=for-the-badge&logo=ethereum)
@@ -311,3 +314,4 @@ Built with ❤️ for the BNB Chain ecosystem
 ⭐ Star this repo if you found it useful!
 
 </div>
+
