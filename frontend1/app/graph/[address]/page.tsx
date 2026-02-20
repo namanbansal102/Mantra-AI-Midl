@@ -197,7 +197,7 @@ export default function GraphVisualization({params}:any) {
   WALLET  |  Layer ${node.layer}
 ────────────────────────────────────────
   Address   ${node.id}
-  Balance   ${node.balance.toFixed(6)} ETH
+  Balance   ${node.balance.toFixed(6)} BNB
   Tx Count  ${node.tx_count}
 ────────────────────────────────────────
   Risk Score       ${node.risk_score}
