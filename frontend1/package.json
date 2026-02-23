@@ -9,6 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@midl/executor-react": "^3.0.3",
+    "@midl/react": "^3.0.3",
+    "@midl/satoshi-kit": "^3.0.3",
     "@radix-ui/react-slot": "^1.2.4",
     "@rainbow-me/rainbowkit": "^2.2.10",
     "@tanstack/react-query": "^5.90.21",

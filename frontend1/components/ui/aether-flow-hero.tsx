@@ -194,7 +194,7 @@ const AetherFlowHero: React.FC = () => {
                     animate="visible"
                     className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 mb-6 backdrop-blur-sm"
                 >
-                   <img className='h-6' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlzPe83XrDQcclbJwYqOZy6lnAcc4FALZ6kw&s" alt="BNB" />
+                   <img className='h-6' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJc9rsuScpVQalmliX6Z6DLote0oFtZ8zhMA&s" alt="BNB" />
                     <span className="text-sm font-medium text-gray-200">
                     Real-Time Fraud Detection
                     </span>
@@ -217,7 +217,7 @@ const AetherFlowHero: React.FC = () => {
                     animate="visible"
                     className="max-w-2xl mx-auto text-lg text-gray-400 mb-10"
                 >
-                   An intelligent, adaptive framework for detecting blockchain risks On BNB Chain through graph visualization that evolves and responds to transactions in real-time.
+                   An intelligent, adaptive framework for detecting blockchain risks On MIDL Chain through graph visualization that evolves and responds to transactions in real-time.
                 </motion.p>
 
                 <motion.div

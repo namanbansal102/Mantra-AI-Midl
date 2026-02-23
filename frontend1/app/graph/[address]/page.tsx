@@ -86,7 +86,7 @@ export default function GraphVisualization({params}:any) {
         setLoading(true);
         setError(null);
         
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/validate_BSC`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/validate`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -197,7 +197,7 @@ export default function GraphVisualization({params}:any) {
   WALLET  |  Layer ${node.layer}
 ────────────────────────────────────────
   Address   ${node.id}
-  Balance   ${node.balance.toFixed(6)} BNB
+  Balance   ${node.balance.toFixed(6)} BTC
   Tx Count  ${node.tx_count}
 ────────────────────────────────────────
   Risk Score       ${node.risk_score}

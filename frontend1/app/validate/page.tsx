@@ -255,7 +255,7 @@ export default function RiskAssessment() {
     try {
       setLoading(true);
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/validate_BSC`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/validate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -377,9 +377,9 @@ export default function RiskAssessment() {
             >
               <div className="text-center mb-12">
               
-                <img className='mx-46' src="https://images.seeklogo.com/logo-png/40/2/binance-smart-chain-logo-png_seeklogo-407502.png" alt="" />
+                <img className='mx-52' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJc9rsuScpVQalmliX6Z6DLote0oFtZ8zhMA&s" alt="" />
                 <p className="text-muted-foreground text-lg">
-                  Analyze the security risk of any Ethereum wallet
+                  Analyze the security risk of Midl wallet
                 </p>
               </div>
 
@@ -406,7 +406,7 @@ export default function RiskAssessment() {
                       type="number"
                       value={amount}
                       onChange={(e) => setAmount(e.target.value)}
-                      placeholder="Amount (in tokens or BNB)"
+                      placeholder="Amount (in tokens or BTC)"
                       step="0.0001"
                       min="0"
                       className="w-full px-6 py-4 bg-background border-0 rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
@@ -523,7 +523,7 @@ export default function RiskAssessment() {
               </div>
               <div className="flex justify-between items-center pb-4 border-b border-border">
                 <span className="text-muted-foreground">Amount</span>
-                <span className="text-foreground font-semibold">{amount} BNB</span>
+                <span className="text-foreground font-semibold">{amount} BTC</span>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-muted-foreground">Risk Assessment</span>
