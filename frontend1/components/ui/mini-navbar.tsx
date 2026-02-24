@@ -1,6 +1,6 @@
 "use client";
 
-// import { ConnectButton } from '@midl/satoshi-kit';
+import { ConnectButton } from '@midl/satoshi-kit';
 import React, { useState, useEffect, useRef } from 'react';
 
 const AnimatedNavLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
@@ -75,7 +75,7 @@ export function Navbar() {
                      opacity-40 filter blur-lg pointer-events-none
                      transition-all duration-300 ease-out
                      group-hover:opacity-60 group-hover:blur-xl group-hover:-m-3"></div>
-       {/* <ConnectButton></ConnectButton> */}
+       <ConnectButton></ConnectButton>
     </div>
   );
 

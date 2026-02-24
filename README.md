@@ -7,11 +7,11 @@
 
 ![Mantra AI Banner](https://img.shields.io/badge/Mantra_AI-Real--Time_Fraud_Detection-blue?style=for-the-badge&logo=ethereum)
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-mantra--ai--bnb.vercel.app-brightgreen?style=for-the-badge&logo=vercel)](https://mantra-ai-bnb.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-mantra--ai--midl.vercel.app-brightgreen?style=for-the-badge&logo=vercel)](https://mantra-ai-midl.vercel.app/)
 [![GitHub](https://img.shields.io/badge/GitHub-namanbansal102%2FMantra--AI-black?style=for-the-badge&logo=github)](https://github.com/namanbansal102/Mantra-AI)
-[![BNB Chain](https://img.shields.io/badge/Chain-BNB%20Chain-yellow?style=for-the-badge&logo=binance)](https://www.bnbchain.org/)
+[![midl Chain](https://img.shields.io/badge/Chain-midl%20Chain-yellow?style=for-the-badge&logo=binance)](https://www.midlchain.org/)
 
-> **An intelligent, adaptive framework for detecting blockchain risks on BNB Chain through graph visualization that evolves and responds to transactions in real-time.**
+> **An intelligent, adaptive framework for detecting blockchain risks on midl Chain through graph visualization that evolves and responds to transactions in real-time.**
 
 </div>
 
@@ -21,14 +21,14 @@
 
 | Resource | URL |
 |----------|-----|
-| 🚀 Deployed App | [https://mantra-ai-bnb.vercel.app/](https://mantra-ai-bnb.vercel.app/) |
-| 📦 GitHub Repository | [https://github.com/namanbansal102/Mantra-AI](https://github.com/namanbansal102/Mantra-AI) |
+| 🚀 Deployed App | [https://mantra-ai-midl.vercel.app/](https://mantra-ai-midl.vercel.app/) |
+| 📦 GitHub Repository | [https://github.com/namanbansal102/Mantra-AI-Midl](https://github.com/namanbansal102/Mantra-AI-Midl) |
 
 ---
 
 ## 📖 Overview
 
-**Mantra AI** is a real-time blockchain fraud detection and risk analysis platform built for the **BNB Chain** ecosystem. It uses graph-based transaction analysis to trace wallet interactions up to 3 layers deep, scoring each wallet and connection for suspicious behaviour using a multi-signal fraud detection engine.
+**Mantra AI** is a real-time blockchain fraud detection and risk analysis platform built for the **midl Chain** ecosystem. It uses graph-based transaction analysis to trace wallet interactions up to 3 layers deep, scoring each wallet and connection for suspicious behaviour using a multi-signal fraud detection engine.
 
 Users can connect their wallet, enter any address, and instantly visualise the transaction graph — with every node and edge colour-coded by risk level and annotated with plain-English explanations of why each address was flagged.
 
@@ -42,7 +42,7 @@ Users can connect their wallet, enter any address, and instantly visualise the t
 - 💬 **Plain-English Hover Tooltips** — Every node and edge explains itself in one natural-language sentence
 - ⚡ **Real-Time Detection** — Risk scores computed live as graph is built, no pre-indexed data required
 - 🦊 **Wallet Connect** — MetaMask / Web3 wallet connection with address display in the navbar
-- 🌐 **BNB Chain Native** — Optimised for BNB Chain transaction patterns and token standards (BEP-20, BEP-721, BEP-1155)
+- 🌐 **midl Chain Native** — Optimised for midl Chain transaction patterns and token standards (BEP-20, BEP-721, BEP-1155)
 
 ---
 
@@ -190,7 +190,7 @@ Runs the full fraud analysis for a given wallet address.
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/namanbansal102/Mantra-AI.git
+git clone https://github.com/namanbansal102/Mantra-AI-Midl.git
 cd Mantra-AI
 ```
 
@@ -204,7 +204,7 @@ pip install -r requirements.txt
 Create a `.env` file:
 ```env
 ETHERSCAN_API_KEY=your_api_key_here
-CHAIN_ID=56           # 56 = BNB Chain mainnet
+CHAIN_ID=56           # 56 = midl Chain mainnet
 MAX_DEPTH=3
 RATE_LIMIT_DELAY=0.4
 ```
@@ -238,7 +238,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## 🧪 Testing with a Known Wallet
 
-To quickly test the engine, use a known active wallet on BNB Chain:
+To quickly test the engine, use a known active wallet on midl Chain:
 
 ```
 0x8894E0a0c962CB723c1976a4421c95949bE2D4E3   # Binance Hot Wallet
@@ -309,7 +309,7 @@ This project is licensed under the MIT License. See [LICENSE](LICENSE) for detai
 
 <div align="center">
 
-Built with ❤️ for the BNB Chain ecosystem
+Built with ❤️ for the midl Chain ecosystem
 
 ⭐ Star this repo if you found it useful!
 
