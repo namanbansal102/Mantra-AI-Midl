@@ -9,6 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@midl/connectors": "^3.0.3",
+    "@midl/core": "^3.0.3",
+    "@midl/executor": "^3.0.3",
     "@midl/executor-react": "^3.0.3",
     "@midl/react": "^3.0.3",
     "@midl/satoshi-kit": "^3.0.3",
@@ -28,7 +31,7 @@
     "react-force-graph-3d": "^1.29.1",
     "tailwind-merge": "^3.4.1",
     "three-spritetext": "^1.10.0",
-    "viem": "^2.46.2",
+    "viem": "npm:@midl/viem@^2.45.0",
     "wagmi": "^2.19.5",
     "web3": "^4.16.0"
   },
@@ -39,6 +42,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "patch-package": "^8.0.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
