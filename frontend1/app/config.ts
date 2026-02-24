@@ -22,7 +22,7 @@ export const queryClient = new QueryClient({
 // Contract config
 export const SMILEPOOL_ADDRESS = ("0xBe4568D988f6634A6aE7DA89efFAA87F08b6e7a1") as `0x${string}`;
 
-export const MIDL_RPC = "https://rpc.staging.midl.xyz";
+export const MIDL_RPC = " ";
 export const CHAIN_ID = 15001;
 export const EXPLORER_URL = "https://blockscout.staging.midl.xyz";
 export const MEMPOOL_URL = "https://mempool.staging.midl.xyz";
