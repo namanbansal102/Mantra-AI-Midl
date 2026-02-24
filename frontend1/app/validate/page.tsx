@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { motion, useMotionValue, useTransform, useSpring, useMotionValueEvent } from 'framer-motion';
 import Link from 'next/link';
-import { useAccount, useSendTransaction, useWaitForTransactionReceipt } from 'wagmi';
 
 // Dynamically import the graph component
 const GraphVisualization = dynamic(() => import('../graph-component'), {
@@ -206,17 +205,11 @@ interface RiskData {
 
 export default function RiskAssessment() {
   const router = useRouter();
-  const { address: userAddress } = useAccount();
-  const { sendTransaction, isPending: isSendingTransaction, data: transactionHash } = useSendTransaction();
-  const { isLoading: isWaitingForReceipt, isSuccess } = useWaitForTransactionReceipt({
-    hash: transactionHash,
-  });
   const [recipientAddress, setRecipientAddress] = useState('');
   const [amount, setAmount] = useState('');
   const [riskData, setRiskData] = useState<RiskData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [isConfirming, setIsConfirming] = useState(false);
 
 
 
@@ -288,67 +281,7 @@ export default function RiskAssessment() {
     }
   };
 
-  const handleConfirm = async () => {
-    if (!userAddress) {
-      setError('Please connect your wallet first');
-      return;
-    }
 
-    if (!recipientAddress || !amount) {
-      setError('Please enter recipient address and amount');
-      return;
-    }
-
-    try {
-      setIsConfirming(true);
-      setError(null);
-
-      // Prepare transaction data
-      const amountInWei = BigInt(Math.floor(parseFloat(amount) * 1e18));
-
-      console.log('[v0] Confirming transaction:', {
-        to: recipientAddress,
-        amount: amount,
-        amountInWei: amountInWei.toString(),
-        riskScore: riskData?.risk_score,
-        userAddress: userAddress,
-      });
-
-      // Send the transaction
-      await sendTransaction({
-        to: recipientAddress as `0x${string}`,
-        value: amountInWei,
-        account: userAddress,
-      });
-
-      console.log('[v0] Transaction sent, hash:', transactionHash);
-    } catch (err) {
-      console.error('[v0] Transaction error:', err);
-      setError(err instanceof Error ? err.message : 'Failed to confirm transaction');
-    } finally {
-      setIsConfirming(false);
-    }
-  };
-
-  // Monitor transaction status
-  useEffect(() => {
-    if (isSuccess) {
-      console.log('[v0] Transaction confirmed successfully:', transactionHash);
-      setError(null);
-      // Optional: Show success toast or message
-      alert(`Transaction confirmed! Hash: ${transactionHash}`);
-      // Reset form on success
-      setRecipientAddress('');
-      setAmount('');
-    }
-  }, [isSuccess, transactionHash]);
-
-  // Monitor transaction sending status
-  useEffect(() => {
-    if (isSendingTransaction) {
-      console.log('[v0] Transaction is being sent...');
-    }
-  }, [isSendingTransaction]);
 
   if (!riskData) {
     return (
@@ -540,29 +473,7 @@ export default function RiskAssessment() {
             </div>
           </motion.div>
 
-          {/* Confirm Button */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-            className="mt-8 w-full max-w-2xl"
-          >
-            <button
-              onClick={handleConfirm}
-              disabled={isConfirming || isSendingTransaction || isWaitingForReceipt || !userAddress}
-              className="w-full px-6 py-4 bg-white text-black font-semibold rounded-xl hover:bg-gray-100 disabled:opacity-50 transition-all duration-300 transform hover:scale-105"
-            >
-              {!userAddress
-                ? 'Connect Wallet First'
-                : isWaitingForReceipt
-                ? 'Waiting for Confirmation...'
-                : isSendingTransaction
-                ? 'Sending Transaction...'
-                : isConfirming
-                ? 'Processing...'
-                : 'Confirm Transaction'}
-            </button>
-          </motion.div>
+
         </motion.div>
 
         {/* Graph Section */}
